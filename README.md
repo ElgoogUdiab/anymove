@@ -5,7 +5,7 @@
 
 <br><br>
 
-<img alt="A dragon roars; an AI video shows it from the front and the side at once; every joint is found in both views; the two views stand up as walls and pin each joint in 3D; the rig lands on the points; a fire demon, a spider and a wolf move the same way." src="docs/anymove.gif" width="800">
+<img alt="Six panels: a dragon, a giant spider, a fire demon and a wolf, all moving; then an AI video shows the dragon from the front and the side at once; every joint is found in both views; the two views stand up as walls and pin each joint in 3D; the rig lands on the points; a fire demon, a spider and a wolf move the same way." src="docs/anymove.gif" width="800">
 
 **@patch_gg** · dragon, giant spider, fire demon, wolf · one AI clip per move, $0.26 each, read and fitted in under
 a minute.

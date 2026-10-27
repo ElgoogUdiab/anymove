@@ -76,7 +76,7 @@ def run(endpoint, payload, **kw):
 
 
 TYPES = {"png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg", "webp": "image/webp", "mp4": "video/mp4",
-         "zip": "application/zip"}
+         "zip": "application/zip", "safetensors": "application/octet-stream"}
 
 
 def upload(path):

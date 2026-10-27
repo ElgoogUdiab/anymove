@@ -52,14 +52,21 @@ def resume(run_dir):
     print("done", json.dumps(res)[:600], info, flush=True)
 
 
+RELEASE_LORA = "https://github.com/Patch-gg/diptych/releases/download/examples-v1/lora-wolf-twocam-h3.safetensors"
+
+
 def lora_path(src):
-    """The LoRA for fal to load: a training run's directory (the URL in its lora.json), a URL, or a local .safetensors
-    (uploaded to fal first, e.g. the wolf LoRA from the examples release)."""
+    """The LoRA for fal to load: a training run's directory (the URL in its lora.json), a URL (such as the wolf LoRA in
+    the examples release, RELEASE_LORA), or a small local .safetensors (uploaded to fal first)."""
     if str(src).startswith(("http://", "https://")):
         return str(src)
     p = pathlib.Path(src)
     if p.suffix == ".safetensors":
-        return fal.upload(p)
+        try:
+            return fal.upload(p)
+        except Exception as e:   # fal's simple upload refuses big files (the wolf LoRA is 131 MB): use a URL instead
+            raise SystemExit(f"could not upload {p.name} to fal ({e.__class__.__name__}); pass the LoRA's URL instead, "
+                             "e.g. " + RELEASE_LORA) from None
     return json.loads((p / "lora.json").read_text())["response"]["lora_file"]["url"]
 
 

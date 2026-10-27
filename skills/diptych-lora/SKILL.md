@@ -45,12 +45,15 @@ its licence is non-commercial; say which you're using.
    ```bash
    .venv/bin/python -m mocap.lora generate runs/<c>/lora/v1 runs/<c>/ref/ref.png prompts/<c>/pounce.txt runs/<c>/videos/pounce/lora.mp4 1.0 42
    ```
-   The wolf's trained LoRA is in the examples release, so it can be tried without training (about $0.38 a clip):
+   The wolf's trained LoRA is in the examples release, so it can be tried without training (about $0.38 a clip);
+   fal loads it straight from the release:
    ```bash
-   tools/fetch_examples.sh wolf --clips --lora
-   .venv/bin/python -m mocap.lora generate runs/wolf/lora/twocam_wolf_h3_lora.safetensors runs/wolf/ref/ref.png \
-     prompts/wolf/heldout/pounce.txt runs/wolf/videos/pounce/lora.mp4 1.0 42
+   tools/fetch_examples.sh wolf --clips
+   .venv/bin/python -m mocap.lora generate \
+     https://github.com/Patch-gg/diptych/releases/download/examples-v1/lora-wolf-twocam-h3.safetensors \
+     runs/wolf/ref/ref.png prompts/wolf/heldout/pounce.txt runs/wolf/videos/pounce/lora.mp4 1.0 42
    ```
+   `tools/fetch_examples.sh wolf --lora` downloads the file itself (131 MB), to run H3 with it yourself.
 6. A/B test on held-out moves against plain H3 with the same seed, then capture both and compare paw agreement and
    reprojection error (diptych-capture).
 

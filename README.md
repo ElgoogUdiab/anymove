@@ -1,16 +1,16 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/readme/header-evening.png">
-  <img alt="patch. diptych. any creature. any move." src="docs/readme/header-day.png" width="800">
+  <img alt="patch. anymove. motion capture for any creature, from one AI video." src="docs/readme/header-day.png" width="800">
 </picture>
 
 <br><br>
 
-<img alt="A dragon roars; an AI video shows it from the front and the side at once; every joint is found in both views; the two views stand up as walls and pin each joint in 3D; the rig lands on the points; a fire demon, a spider and a wolf move the same way." src="docs/diptych.gif" width="800">
+<img alt="A dragon roars; an AI video shows it from the front and the side at once; every joint is found in both views; the two views stand up as walls and pin each joint in 3D; the rig lands on the points; a fire demon, a spider and a wolf move the same way." src="docs/anymove.gif" width="800">
 
 **@patch_gg** · dragon, giant spider, fire demon, wolf · one AI clip per move, $0.26 each, read and fitted in under
 a minute.
 
-diptych turns one AI video into an animation for any rigged creature, wings, tails and eight legs included. A video
+anymove turns one AI video into an animation for any rigged creature, wings, tails and eight legs included. A video
 model films the creature from two cameras in one frame, front on the left and side on the right. A joint reader
 trained on that one creature finds every joint in both views. A joint sits at the same height in both, so the pair
 pins it in 3D, and the rig is fitted to those joints frame by frame and exported as a GLB.
@@ -41,7 +41,7 @@ You need an NVIDIA GPU with CUDA (24 GB to train a reader; reading and fitting n
 to make new clips.
 
 ```bash
-git clone https://github.com/Patch-gg/diptych && cd diptych
+git clone https://github.com/Patch-gg/anymove && cd anymove
 python3.11 -m venv .venv
 .venv/bin/pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
 .venv/bin/pip install -r requirements.txt
@@ -58,7 +58,7 @@ MOCAP_CREATURE=assets/dragon .venv/bin/python -m mocap.solve examples/dragon_roa
 ```
 
 The whole capture, from the AI clip to a GLB, with an example creature's mesh, trained reader and clip from the
-[release](https://github.com/Patch-gg/diptych/releases/tag/examples-v1) (13 MB mesh, 355 MB reader, 4 MB clip):
+[release](https://github.com/Patch-gg/anymove/releases/tag/examples-v1) (13 MB mesh, 355 MB reader, 4 MB clip):
 
 ```bash
 tools/fetch_examples.sh dragon --readers --clips
@@ -94,21 +94,21 @@ The skills below walk an agent (or you) through each step, with the checks that 
 
 ## agent skills.
 
-diptych is a [Claude Code](https://code.claude.com) plugin and its own marketplace:
+anymove is a [Claude Code](https://code.claude.com) plugin and its own marketplace:
 
 ```
-/plugin marketplace add Patch-gg/diptych
-/plugin install diptych@diptych
+/plugin marketplace add Patch-gg/anymove
+/plugin install anymove@anymove
 ```
 
 | skill | for |
 |---|---|
-| `diptych` | the method, setup, which step comes next, costs |
-| `diptych-rig` | mesh, facing and scale, placing joints in rig.json, building and painting the rig, framing |
-| `diptych-film` | writing the prompt, generating clips on fal, checking them before capture |
-| `diptych-reader` | rendering the dataset, training the reader, the exam in centimetres |
-| `diptych-capture` | reading, fitting, the quality gates, fixing bad fits, showcase renders |
-| `diptych-lora` | training and testing the MiniMax H3 LoRA on fal |
+| `anymove` | the method, setup, which step comes next, costs |
+| `anymove-rig` | mesh, facing and scale, placing joints in rig.json, building and painting the rig, framing |
+| `anymove-film` | writing the prompt, generating clips on fal, checking them before capture |
+| `anymove-reader` | rendering the dataset, training the reader, the exam in centimetres |
+| `anymove-capture` | reading, fitting, the quality gates, fixing bad fits, showcase renders |
+| `anymove-lora` | training and testing the MiniMax H3 LoRA on fal |
 
 They're plain [Agent Skills](https://agentskills.io) (`skills/<name>/SKILL.md`), so other agents can load them from that
 folder too.

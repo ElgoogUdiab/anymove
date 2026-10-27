@@ -1,11 +1,11 @@
 ---
-name: diptych-lora
-description: Train and use a MiniMax H3 image-to-video LoRA on fal that keeps diptych's two-camera layout - split screen held, limb colours kept, both views in step. Builds the dataset by re-rendering clean captured motions (and their mirrors) from both cameras, packs it, runs a cheap debug pass, trains, and A/B tests against plain H3 with the same seeds. Use when plain video models keep swapping limb colours or breaking the split screen for a creature, or when someone asks about @Graalitoo's LoRA step, its cost or its training data.
+name: anymove-lora
+description: Train and use a MiniMax H3 image-to-video LoRA on fal that keeps anymove's two-camera layout - split screen held, limb colours kept, both views in step. Builds the dataset by re-rendering clean captured motions (and their mirrors) from both cameras, packs it, runs a cheap debug pass, trains, and A/B tests against plain H3 with the same seeds. Use when plain video models keep swapping limb colours or breaking the split screen for a creature, or when someone asks about @Graalitoo's LoRA step, its cost or its training data.
 license: Apache-2.0
-compatibility: Needs a fal.ai key (FAL_KEY), Blender 5.x, and a creature with several good captures (diptych-capture). Training runs on fal, not locally.
+compatibility: Needs a fal.ai key (FAL_KEY), Blender 5.x, and a creature with several good captures (anymove-capture). Training runs on fal, not locally.
 ---
 
-# diptych-lora: teach the video model the layout
+# anymove-lora: teach the video model the layout
 
 Graalitoo's addition to the method: a LoRA on MiniMax H3 (open weights) so two-camera clips come out right more
 often. fal hosts both the trainer (`minimax/h3/i2v/trainer`, $0.01 a step) and LoRA inference
@@ -22,7 +22,7 @@ its licence is non-commercial; say which you're using.
 
 ## Steps
 
-1. Capture 15-20 good moves (diptych-film, diptych-capture). Prompts live in `prompts/<c>/<move>.txt` or
+1. Capture 15-20 good moves (anymove-film, anymove-capture). Prompts live in `prompts/<c>/<move>.txt` or
    `prompts/<c>/train/<move>.txt`; the wolf has 14 training and 4 held-out moves already written.
 2. Build the set (Blender renders each clip and its mirror, 5 at a time):
    ```bash
@@ -50,12 +50,12 @@ its licence is non-commercial; say which you're using.
    ```bash
    tools/fetch_examples.sh wolf --clips
    .venv/bin/python -m mocap.lora generate \
-     https://github.com/Patch-gg/diptych/releases/download/examples-v1/lora-wolf-twocam-h3.safetensors \
+     https://github.com/Patch-gg/anymove/releases/download/examples-v1/lora-wolf-twocam-h3.safetensors \
      runs/wolf/ref/ref.png prompts/wolf/heldout/pounce.txt runs/wolf/videos/pounce/lora.mp4 1.0 42
    ```
    `tools/fetch_examples.sh wolf --lora` downloads the file itself (131 MB), to run H3 with it yourself.
 6. A/B test on held-out moves against plain H3 with the same seed, then capture both and compare paw agreement and
-   reprojection error (diptych-capture).
+   reprojection error (anymove-capture).
 
 ## What it did for the wolf (one seed per move: a first read, not a benchmark)
 

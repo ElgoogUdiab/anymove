@@ -8,7 +8,7 @@ source "$(dirname "$0")/_env.sh"
 need_creature "${1:-}"
 c=$1; video=${2:?video}; name=${3:?name}; views=${4:-persp,side}
 rig=assets/$c/rigged; out=runs/$c/clips/$name
-# the 3/4 showcase camera: creature.json "camera" (frame it to the creature's biggest move; see diptych-capture)
+# the 3/4 showcase camera: creature.json "camera" (frame it to the creature's biggest move; see anymove-capture)
 read -r cam target lens < <($PY -c "import json; c = json.load(open('assets/$c/creature.json')).get('camera', {}); print(c.get('cam', '-3.2,-3.0,1.6'), c.get('target', '0,0,0.5'), c.get('lens', 50))")
 mkdir -p "$out"
 $PY -m mocap.detect "$video" "runs/$c/reader.pt" "runs/$c/ref/ref.png" "$out/det.npz" "$out/overlay.mp4" | tail -1

@@ -58,8 +58,8 @@ def header(style):
     img = Image.new('RGBA', (1600, 400), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     draw_rects(d, logo('patch-lockup-white', ink, quiet), 0, 0, 6)                 # 3 px cells on screen
-    d.text((0, 254), 'diptych.', font=pixel(144), fill=ink, anchor='ls')            # 8 px cells: the headline size
-    d.text((0, 352), 'any creature. any move.', font=funnel(52), fill=quiet, anchor='ls')
+    d.text((0, 254), 'anymove.', font=pixel(144), fill=ink, anchor='ls')            # 8 px cells: the headline size
+    d.text((0, 352), 'motion capture for any creature, from one AI video.', font=funnel(52), fill=quiet, anchor='ls')
     img.save(os.path.join(HERE, f'header-{style}.png'), optimize=True)
 
 

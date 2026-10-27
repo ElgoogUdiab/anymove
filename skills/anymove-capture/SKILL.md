@@ -1,11 +1,11 @@
 ---
-name: diptych-capture
-description: Turn a two-camera AI clip into a game-ready animation with diptych - read every joint with the creature's trained reader, check that the two views agree, fit the rig in both views at once, and export a GLB with renders and a side-by-side comparison. Covers the quality gates (paw agreement, reprojection error), what to do when a fit fails, and three-quarter showcase renders. Use when someone has a diptych clip to capture, asks whether a capture is good, wants the GLB or renders of a move, or a fit looks wrong.
+name: anymove-capture
+description: Turn a two-camera AI clip into a game-ready animation with anymove - read every joint with the creature's trained reader, check that the two views agree, fit the rig in both views at once, and export a GLB with renders and a side-by-side comparison. Covers the quality gates (paw agreement, reprojection error), what to do when a fit fails, and three-quarter showcase renders. Use when someone has an anymove clip to capture, asks whether a capture is good, wants the GLB or renders of a move, or a fit looks wrong.
 license: Apache-2.0
-compatibility: NVIDIA GPU for reading (a few GB), CPU or GPU for the fit, Blender 5.x for the GLB and renders, Python 3.11 venv from requirements.txt. Needs runs/<c>/reader.pt (diptych-reader) and runs/<c>/ref/ref.png (diptych-rig).
+compatibility: NVIDIA GPU for reading (a few GB), CPU or GPU for the fit, Blender 5.x for the GLB and renders, Python 3.11 venv from requirements.txt. Needs runs/<c>/reader.pt (anymove-reader) and runs/<c>/ref/ref.png (anymove-rig).
 ---
 
-# diptych-capture: clip in, animation out
+# anymove-capture: clip in, animation out
 
 ```bash
 tools/capture.sh <c> runs/<c>/videos/roar/s1/h3max.mp4 roar
@@ -41,7 +41,7 @@ reprojection error px: {'front': 5.92, 'front_x_only': 2.55, 'side': 7.99}
 ```
 
 - **Paw agreement score:** 0.8 or more, the views tell one story: keep it. 0.5-0.8: look at `showcase.mp4`, often one
-  limb is off. Under 0.5: the video model animated the views differently; reroll the clip (diptych-film). `None` for
+  limb is off. Under 0.5: the video model animated the views differently; reroll the clip (anymove-film). `None` for
   a foot means it barely moved (planted feet in a roar); judge that clip by the reprojection error instead.
 - **Reprojection error** (layout pixels, how far the fitted rig's joints land from the readings): front_x_only of 1-3
   px and side of 2-8 px were typical on good clips. Scale by the creature's size in the frame.

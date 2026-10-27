@@ -1,11 +1,11 @@
 ---
-name: diptych-film
-description: Make the two-camera AI clip for a diptych creature - write the move's prompt from creature.json, send the reference frame to MiniMax H3 Max (or H3, Seedance, FLUX 3 Max) on fal, and check the clip kept the split screen, the limb colours and both views in step before capture. Use when someone wants a new move for a rigged diptych creature, when clips come back with swapped colours, a moving camera or a broken split screen, or when choosing a video model for two-camera clips.
+name: anymove-film
+description: Make the two-camera AI clip for an anymove creature - write the move's prompt from creature.json, send the reference frame to MiniMax H3 Max (or H3, Seedance, FLUX 3 Max) on fal, and check the clip kept the split screen, the limb colours and both views in step before capture. Use when someone wants a new move for a rigged anymove creature, when clips come back with swapped colours, a moving camera or a broken split screen, or when choosing a video model for two-camera clips.
 license: Apache-2.0
-compatibility: Needs a fal.ai key (FAL_KEY in .env or the environment) and a creature already set up with diptych-rig (runs/<c>/ref/ref.png).
+compatibility: Needs a fal.ai key (FAL_KEY in .env or the environment) and a creature already set up with anymove-rig (runs/<c>/ref/ref.png).
 ---
 
-# diptych-film: one move, two cameras, one clip
+# anymove-film: one move, two cameras, one clip
 
 The video model gets one image, `runs/<c>/ref/ref.png` (front view left, side view right, limbs painted), and a prompt
 that pins everything except the action. Both views come from one generation, which is what keeps them in step.
@@ -45,11 +45,11 @@ Look at a few frames (or the whole clip) and reject it if:
 
 - the split screen breaks: a view zooms, pans or cuts, the divider moves, the creature walks out of a view;
 - a limb's colour changes or swaps sides (plain H3 swapped them on 2 of 5 wolf clips; the reader then labels the
-  wrong legs); the LoRA (diptych-lora) kept them on 5 of 5;
+  wrong legs); the LoRA (anymove-lora) kept them on 5 of 5;
 - the body count changes (an extra leg, a lost wing), or the creature turns to face another way;
 - fire, smoke, dust or a weapon covers joints.
 
-The real gate is numeric and comes in capture: the paw agreement between the views (diptych-capture). What the
+The real gate is numeric and comes in capture: the paw agreement between the views (anymove-capture). What the
 clips taught so far:
 
 - Views disagree in the legs, not in time. Seedance's trot played the front legs in anti-phase between the views

@@ -1,11 +1,11 @@
 ---
-name: diptych-rig
-description: Set up a new creature for diptych - get a textured mesh, scale and face it, place its skeleton in rig.json with grid views, build and skin the rig in Blender, paint each limb its own colour, choose the two-camera framing, and render the reference frame the video model starts from. Use when adding a creature to diptych, when a rig tears or deforms badly, when the creature is cut off or tiny in the two-camera frame, or when someone asks how to rig a non-humanoid for diptych.
+name: anymove-rig
+description: Set up a new creature for anymove - get a textured mesh, scale and face it, place its skeleton in rig.json with grid views, build and skin the rig in Blender, paint each limb its own colour, choose the two-camera framing, and render the reference frame the video model starts from. Use when adding a creature to anymove, when a rig tears or deforms badly, when the creature is cut off or tiny in the two-camera frame, or when someone asks how to rig a non-humanoid for anymove.
 license: Apache-2.0
 compatibility: Blender 5.x on PATH (or BLENDER=...), Python 3.11 venv from requirements.txt. A fal.ai key only if the mesh is generated with Tripo.
 ---
 
-# diptych-rig: one creature, ready to film
+# anymove-rig: one creature, ready to film
 
 Everything for creature `<c>` lives in `assets/<c>/`: `model.glb` (the mesh), `creature.json` (framing, paint, words
 for the prompt), `rig.json` (the skeleton). Copy a close example to start: `assets/wolf` (quadruped), `assets/dragon`
@@ -13,7 +13,7 @@ for the prompt), `rig.json` (the skeleton). Copy a close example to start: `asse
 
 ## 1. The mesh
 
-- Any textured GLB works. diptych's examples are Tripo H3.1 (`tripo3d/h3.1/image-to-3d` on fal, $0.40 with HD
+- Any textured GLB works. anymove's examples are Tripo H3.1 (`tripo3d/h3.1/image-to-3d` on fal, $0.40 with HD
   texture) from one FLUX 3 concept image: a plain 3/4 view of the creature on a neutral background, whole body in
   frame, limbs apart and clearly separate.
 - Prefer a design where every limb reads separately. Fire, smoke, capes, weapons and long hair hide joints from the
@@ -94,10 +94,10 @@ with wings up needs more headroom than one standing. Re-run `tools/rig.sh <c>` a
 Also in `creature.json`: `name` ("spider"), `noun` ("giant spider"), `describe` ("a black armoured giant spider with
 bone-coloured markings"), `colour_code` ("first left leg pink, first right leg blue; ..."), `count` ("Exactly eight
 legs, two fangs, one body, one round abdomen."), `flank` ("flank" or "side") and `limbs` ("legs" or "limbs").
-`tools/make_prompt.py` builds every prompt from these (diptych-film).
+`tools/make_prompt.py` builds every prompt from these (anymove-film).
 
 Last, `"camera": {"cam": "-5.4,-6.0,1.4", "target": "0,-0.3,1.5", "lens": 32}` is the 3/4 view that
-`tools/capture.sh` renders each move from (diptych-capture says how to frame it). Without it, the wolf's applies.
+`tools/capture.sh` renders each move from (anymove-capture says how to frame it). Without it, the wolf's applies.
 
 ## Failure modes seen
 

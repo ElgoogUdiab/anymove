@@ -1,11 +1,11 @@
 ---
-name: diptych-reader
-description: Train the joint reader for one diptych creature - render about 2,200 random poses from both layout cameras with every joint's true position, fine-tune DINOv2 (ViT-B/14 with registers) plus a heatmap head on them, check the held-out error, and optionally run the exam (a made-up motion with known joints, read back and scored in centimetres). Use after diptych-rig and before diptych-capture, when a reader misses or swaps joints on real clips, or when planning GPU time for dataset rendering and training.
+name: anymove-reader
+description: Train the joint reader for one anymove creature - render about 2,200 random poses from both layout cameras with every joint's true position, fine-tune DINOv2 (ViT-B/14 with registers) plus a heatmap head on them, check the held-out error, and optionally run the exam (a made-up motion with known joints, read back and scored in centimetres). Use after anymove-rig and before anymove-capture, when a reader misses or swaps joints on real clips, or when planning GPU time for dataset rendering and training.
 license: Apache-2.0
 compatibility: NVIDIA GPU with CUDA (about 12 GB at batch 20, so a 24 GB card), Blender 5.x, Python 3.11 venv from requirements.txt. Downloads facebook/dinov2-with-registers-base on first use.
 ---
 
-# diptych-reader: teach DINOv2 one creature
+# anymove-reader: teach DINOv2 one creature
 
 The reader is trained on the creature itself, so it knows every joint name and every limb colour. Data is free:
 Blender poses the rig at random inside its joint limits and records where each joint lands in both views.
@@ -59,7 +59,7 @@ The wolf scored 0.94 cm mean 3D joint error on a 1.6 m body (median 0.63 cm, paw
 
 ## When the reader struggles on real clips
 
-- Joints jump between limbs: the limb colours in the clip drifted from the paint (diptych-film), or two limbs share
+- Joints jump between limbs: the limb colours in the clip drifted from the paint (anymove-film), or two limbs share
   similar colours. Repaint far-apart colours and retrain.
 - A pose the clip shows never appeared in training (lying on its side, a full curl): widen that bone's limits in
   rig.json, rebuild the rig, render and train again. Random poses don't cover lying-down; captured motions would.

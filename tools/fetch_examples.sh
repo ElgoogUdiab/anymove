@@ -7,7 +7,7 @@
 #   --lora:      the wolf's MiniMax H3 LoRA (131 MB; MiniMax H3's community licence), runs/wolf/lora/
 set -euo pipefail
 cd "$(dirname "$0")/.."
-URL=${DIPTYCH_RELEASE_URL:-https://github.com/Patch-gg/diptych/releases/download/examples-v1}
+URL=${ANYMOVE_RELEASE_URL:-https://github.com/Patch-gg/anymove/releases/download/examples-v1}
 kinds=(glb); creatures=()
 for a in "$@"; do
   case $a in

@@ -52,7 +52,7 @@ def resume(run_dir):
     print("done", json.dumps(res)[:600], info, flush=True)
 
 
-RELEASE_LORA = "https://github.com/Patch-gg/diptych/releases/download/examples-v1/lora-wolf-twocam-h3.safetensors"
+RELEASE_LORA = "https://github.com/Patch-gg/anymove/releases/download/examples-v1/lora-wolf-twocam-h3.safetensors"
 
 
 def lora_path(src):
